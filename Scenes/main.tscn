@@ -13,3 +13,5 @@ position = Vector2(96, 232)
 
 [node name="Paddle2" parent="." unique_id=29275267 instance=ExtResource("1_bo1nx")]
 position = Vector2(656, 232)
+MoveUpAction = "move_up_right"
+MoveDownAction = "move_down_right"
