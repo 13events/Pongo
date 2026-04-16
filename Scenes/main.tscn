@@ -5,10 +5,11 @@
 
 [node name="Main" type="Node" unique_id=1988310289]
 
-[node name="RightPaddle" parent="." unique_id=241820216 instance=ExtResource("1_bo1nx")]
-
-[node name="LeftPaddle" parent="." unique_id=1919529530 instance=ExtResource("1_bo1nx")]
-position = Vector2(316, 0)
-
 [node name="Ball" parent="." unique_id=255734720 instance=ExtResource("2_8gbba")]
-position = Vector2(145, 123)
+position = Vector2(368, 280)
+
+[node name="Paddle" parent="." unique_id=241820216 instance=ExtResource("1_bo1nx")]
+position = Vector2(96, 232)
+
+[node name="Paddle2" parent="." unique_id=29275267 instance=ExtResource("1_bo1nx")]
+position = Vector2(656, 232)

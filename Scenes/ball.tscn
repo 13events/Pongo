@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://c6mwtpd3n25u3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_25osk"]
-radius = 22.0
+radius = 11.0
 
 [node name="Ball" type="CharacterBody2D" unique_id=255734720]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=231037307]
-position = Vector2(20, 20)
+position = Vector2(10, 10)
 shape = SubResource("CircleShape2D_25osk")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2050843843]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 20.0
+offset_bottom = 20.0
