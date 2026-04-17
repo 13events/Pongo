@@ -1,9 +1,13 @@
 [gd_scene format=3 uid="uid://c6mwtpd3n25u3"]
 
+[ext_resource type="Script" uid="uid://d3bqv68ynmahv" path="res://Scripts/Ball.cs" id="1_d60mj"]
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_25osk"]
 radius = 11.0
 
 [node name="Ball" type="CharacterBody2D" unique_id=255734720]
+script = ExtResource("1_d60mj")
+Speed = 150.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=231037307]
 position = Vector2(10, 10)
