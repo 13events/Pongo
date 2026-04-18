@@ -17,7 +17,7 @@ public partial class Paddle : CharacterBody2D
 	public override void _PhysicsProcess(double delta)
 	{
 		//debug movement
-		GD.Print("PhysicsProcess running - direction = ", Input.GetAxis(MoveUpAction, MoveDownAction));
+		//GD.Print("PhysicsProcess running - direction = ", Input.GetAxis(MoveUpAction, MoveDownAction));
 		
 		//create new vector2 with the paddles' current Velocity
 		Vector2 velocity = Velocity;
@@ -27,11 +27,12 @@ public partial class Paddle : CharacterBody2D
 		
 		//set velocity.Y
 		velocity.Y = direction * Speed;
+		velocity.X = 0.0f;
 		
 		//Store value in Paddles' Velocity variable.
-		Velocity = velocity;
+		//Velocity = velocity;
 		
-		MoveAndSlide();
+		MoveAndCollide(velocity * (float)delta);
 		
 	}
 }

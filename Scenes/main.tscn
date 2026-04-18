@@ -4,8 +4,32 @@
 [ext_resource type="PackedScene" uid="uid://dpavctjal7a7j" path="res://Scenes/paddle.tscn" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://c6mwtpd3n25u3" path="res://Scenes/ball.tscn" id="2_8gbba"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8gbba"]
+bounce = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jjvhh"]
+size = Vector2(800, 5)
+
 [node name="Main" type="Node" unique_id=1988310289]
 script = ExtResource("1_8gbba")
+
+[node name="TopWall" type="StaticBody2D" parent="." unique_id=433092179]
+position = Vector2(400, 1)
+physics_material_override = SubResource("PhysicsMaterial_8gbba")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall" unique_id=1412694528]
+shape = SubResource("RectangleShape2D_jjvhh")
+debug_color = Color(0.99607843, 0, 0.21176471, 0.79607844)
+
+[node name="BottomWall" type="StaticBody2D" parent="." unique_id=733574347]
+position = Vector2(400, 600)
+physics_material_override = SubResource("PhysicsMaterial_8gbba")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall" unique_id=150043316]
+shape = SubResource("RectangleShape2D_jjvhh")
+debug_color = Color(0.99607843, 0, 0.21176471, 0.79607844)
 
 [node name="Ball" parent="." unique_id=255734720 instance=ExtResource("2_8gbba")]
 position = Vector2(368, 280)

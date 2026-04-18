@@ -6,7 +6,6 @@ public partial class Main : Node
 	//get ball reference
 	private Ball _ball;
 	
-	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{

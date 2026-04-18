@@ -25,7 +25,13 @@ public partial class Ball : CharacterBody2D
 
     public override void _PhysicsProcess(double delta)
     {
-        MoveAndSlide();
+        //MoveAndSlide();
+
+        var collisionInfo = MoveAndCollide(Velocity * (float)delta);
+        if (collisionInfo != null)
+        {
+            Velocity = Velocity.Bounce(collisionInfo.GetNormal());
+        }
     }
 
     
