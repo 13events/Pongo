@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cv8mu4o4t5d1m" path="res://Scripts/Main.cs" id="1_8gbba"]
 [ext_resource type="PackedScene" uid="uid://dpavctjal7a7j" path="res://Scenes/paddle.tscn" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://c6mwtpd3n25u3" path="res://Scenes/ball.tscn" id="2_8gbba"]
+[ext_resource type="PackedScene" uid="uid://beyrxkxfidyqh" path="res://Scenes/hud.tscn" id="2_jjvhh"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8gbba"]
 bounce = 1.0
@@ -10,8 +11,14 @@ bounce = 1.0
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jjvhh"]
 size = Vector2(800, 5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8gbba"]
+size = Vector2(5, 600)
+
 [node name="Main" type="Node" unique_id=1988310289]
 script = ExtResource("1_8gbba")
+
+[node name="HUD" parent="." unique_id=587815471 instance=ExtResource("2_jjvhh")]
+layer = 2
 
 [node name="TopWall" type="StaticBody2D" parent="." unique_id=433092179]
 position = Vector2(400, 1)
@@ -41,3 +48,20 @@ position = Vector2(96, 232)
 position = Vector2(656, 232)
 MoveUpAction = "move_up_right"
 MoveDownAction = "move_down_right"
+
+[node name="LeftGoal" type="Area2D" parent="." unique_id=2068355370]
+position = Vector2(-5, 300)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LeftGoal" unique_id=852900827]
+shape = SubResource("RectangleShape2D_8gbba")
+
+[node name="RightGoal" type="Area2D" parent="." unique_id=1950024202]
+position = Vector2(805, 300)
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RightGoal" unique_id=1201484235]
+shape = SubResource("RectangleShape2D_8gbba")
+
+[connection signal="body_exited" from="LeftGoal" to="." method="OnLeftGoalBodyExited"]
+[connection signal="body_exited" from="RightGoal" to="." method="OnRightGoalBodyExited"]

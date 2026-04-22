@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://beyrxkxfidyqh"]
+
+[ext_resource type="Script" uid="uid://cp60qmtn0r1ai" path="res://Scripts/Hud.cs" id="1_e0onf"]
+
+[sub_resource type="SystemFont" id="SystemFont_3gfia"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_e0onf"]
+font = SubResource("SystemFont_3gfia")
+font_size = 26
+
+[node name="HUD" type="CanvasLayer" unique_id=587815471]
+script = ExtResource("1_e0onf")
+
+[node name="LeftScore" type="Label" parent="." unique_id=185408304]
+offset_left = 120.0
+offset_right = 238.0
+offset_bottom = 72.0
+text = "LeftScore"
+label_settings = SubResource("LabelSettings_e0onf")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="RightScore" type="Label" parent="." unique_id=728096373]
+offset_left = 512.0
+offset_right = 672.0
+offset_bottom = 72.0
+text = "RightScore"
+label_settings = SubResource("LabelSettings_e0onf")
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
