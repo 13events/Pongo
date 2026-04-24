@@ -3,10 +3,17 @@
 [ext_resource type="Script" uid="uid://cp60qmtn0r1ai" path="res://Scripts/Hud.cs" id="1_e0onf"]
 
 [sub_resource type="SystemFont" id="SystemFont_3gfia"]
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_e0onf"]
 font = SubResource("SystemFont_3gfia")
 font_size = 26
+
+[sub_resource type="SystemFont" id="SystemFont_e0onf"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_fccik"]
+font = SubResource("SystemFont_e0onf")
+font_size = 64
 
 [node name="HUD" type="CanvasLayer" unique_id=587815471]
 script = ExtResource("1_e0onf")
@@ -30,3 +37,19 @@ label_settings = SubResource("LabelSettings_e0onf")
 horizontal_alignment = 1
 vertical_alignment = 1
 uppercase = true
+
+[node name="WinMessage" type="Label" parent="." unique_id=626225790]
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -227.0
+offset_top = -44.0
+offset_right = 227.0
+offset_bottom = 44.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Win Condition!"
+label_settings = SubResource("LabelSettings_fccik")
