@@ -16,6 +16,7 @@ size = Vector2(5, 600)
 
 [node name="Main" type="Node" unique_id=1988310289]
 script = ExtResource("1_8gbba")
+_winCondition = 1
 
 [node name="HUD" parent="." unique_id=587815471 instance=ExtResource("2_jjvhh")]
 layer = 2
@@ -41,10 +42,10 @@ debug_color = Color(0.99607843, 0, 0.21176471, 0.79607844)
 [node name="Ball" parent="." unique_id=255734720 instance=ExtResource("2_8gbba")]
 position = Vector2(368, 280)
 
-[node name="Paddle" parent="." unique_id=241820216 instance=ExtResource("1_bo1nx")]
+[node name="LeftPaddle" parent="." unique_id=241820216 instance=ExtResource("1_bo1nx")]
 position = Vector2(96, 232)
 
-[node name="Paddle2" parent="." unique_id=29275267 instance=ExtResource("1_bo1nx")]
+[node name="RightPaddle" parent="." unique_id=29275267 instance=ExtResource("1_bo1nx")]
 position = Vector2(656, 232)
 MoveUpAction = "move_up_right"
 MoveDownAction = "move_down_right"

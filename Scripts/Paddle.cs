@@ -35,4 +35,5 @@ public partial class Paddle : CharacterBody2D
 		MoveAndCollide(velocity * (float)delta);
 		
 	}
+	
 }
