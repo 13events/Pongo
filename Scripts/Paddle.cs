@@ -35,5 +35,19 @@ public partial class Paddle : CharacterBody2D
 		MoveAndCollide(velocity * (float)delta);
 		
 	}
-	
+
+	public void Reset(Vector2 position)
+	{
+		this.Position = position;
+	}
+
+	public void HidePaddle()
+	{
+		this.Visible = false;
+	}
+
+	public void ShowPaddle()
+	{
+		this.Visible = true;
+	}
 }

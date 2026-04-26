@@ -7,6 +7,7 @@ public partial class Hud : CanvasLayer
 	private Label _leftScoreLabel;
 	private Label _rightScoreLabel;
 	private Label _winMessageLabel;
+	private Label _playAgainLabel;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -14,6 +15,7 @@ public partial class Hud : CanvasLayer
 		_leftScoreLabel = GetNode<Label>("LeftScore");
 		_rightScoreLabel = GetNode<Label>("RightScore");
 		_winMessageLabel = GetNode<Label>("WinMessage");	//starts hidden
+		_playAgainLabel = GetNode <Label>("PlayAgainMessage");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,5 +33,20 @@ public partial class Hud : CanvasLayer
 	{
 		_winMessageLabel.Text = message;
 		_winMessageLabel.Visible = true;
+	}
+
+	public void HideWinMessage()
+	{
+		_winMessageLabel.Visible = false;
+	}
+
+	public void ShowPlayAgainMessage()
+	{
+		_playAgainLabel.Visible = true;
+	}
+	
+	public void HidePlayAgainMessage()
+	{
+		_playAgainLabel.Visible = false;
 	}
 }

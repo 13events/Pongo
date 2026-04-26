@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Reflection.Metadata.Ecma335;
 
 
 public partial class Main : Node
@@ -23,6 +24,8 @@ public partial class Main : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		ProcessMode = ProcessModeEnum.Always;
+		
 		_hud = GetNode<Hud>("HUD");
 		_ball =  GetNode<Ball>("Ball"); //get ref to ball
 		_leftPaddle = GetNode<Paddle>("LeftPaddle");
@@ -36,7 +39,6 @@ public partial class Main : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
 	}
 	//check if ball exited left of screen, increment score for right paddle, reset ball.
 	public void OnLeftGoalBodyExited(Node2D body)
@@ -48,16 +50,7 @@ public partial class Main : Node
 		{
 			GD.Print("Ball has exited the left goal");
 			
-			//Increment right paddle player score.
-			IncrementRightScore();
-			
-			//use HUD to update score
-			UpdateScore();
-
-			if (!_gameOver)
-			{
-				_ball.Reset(); //reset ball
-			}
+			HandleGoalScored(false);
 		}
 	}
 	
@@ -70,16 +63,7 @@ public partial class Main : Node
 		{
 			GD.Print("Ball has exited the right goal");
 			
-			//Increment left paddle player score.
-			IncrementLeftScore();
-			
-			//use HUD to update score
-			UpdateScore();
-			
-			if (!_gameOver)
-			{
-				_ball.Reset(); //reset ball
-			}
+			HandleGoalScored(true);
 		}
 	}
 
@@ -109,6 +93,7 @@ public partial class Main : Node
 			_hud.ShowWinMessage("Left Player Wins!");
 			GetTree().Paused = true;
 			HideGameElements();
+			_hud.ShowPlayAgainMessage();
 		}
 		else if (_rightScore == _winCondition)
 		{
@@ -116,15 +101,78 @@ public partial class Main : Node
 			_hud.ShowWinMessage("Right Player Wins!");
 			GetTree().Paused = true;
 			HideGameElements();
+			_hud.ShowPlayAgainMessage();
 		}
 	}
-
 	
-
 	public void HideGameElements()
 	{
 		_ball.Visible = false;
 		_leftPaddle.Visible = false;
 		_rightPaddle.Visible = false;
+	}
+
+	public void RestartGame()
+	{
+		//reset ball
+		_ball.Reset();
+		//reset score
+		_leftScore = 0;
+		_rightScore = 0;
+		
+		//update Score UI
+		_hud.UpdateScore(_leftScore, _rightScore);
+		
+		//reset gameOver to false
+		_gameOver = false;
+		//reset paddle positions
+		_leftPaddle.Reset(new Vector2 (96,232));
+		_rightPaddle.Reset(new Vector2 (656, 232));
+		//hide win message
+		_hud.HideWinMessage();
+		
+		//hide play again message
+		_hud.HidePlayAgainMessage();
+		//show game elements
+		_leftPaddle.ShowPaddle();
+		_rightPaddle.ShowPaddle();
+		_ball.Visible = true;
+		
+		//unpause game
+		GetTree().Paused = false;
+
+	}
+
+	public override void _Input(InputEvent @event)
+	{
+		if (_gameOver)
+		{
+			if (@event is InputEventKey eventKey && eventKey.Pressed)
+			{
+				RestartGame();
+			}
+		}	
+		
+	}
+
+	private void HandleGoalScored(bool isLeftScore)
+	{
+		if (isLeftScore)
+		{
+			IncrementLeftScore();
+			
+		}
+		else
+		{
+			IncrementRightScore();
+			
+		}
+		
+		UpdateScore();
+
+		if (!_gameOver)
+		{
+			_ball.Reset();
+		}
 	}
 }
