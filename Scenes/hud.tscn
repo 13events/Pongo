@@ -10,10 +10,17 @@ font = SubResource("SystemFont_3gfia")
 font_size = 26
 
 [sub_resource type="SystemFont" id="SystemFont_e0onf"]
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_fccik"]
 font = SubResource("SystemFont_e0onf")
 font_size = 64
+
+[sub_resource type="SystemFont" id="SystemFont_fccik"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_bjfho"]
+font = SubResource("SystemFont_fccik")
+font_size = 58
 
 [node name="HUD" type="CanvasLayer" unique_id=587815471]
 script = ExtResource("1_e0onf")
@@ -53,3 +60,19 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "Win Condition!"
 label_settings = SubResource("LabelSettings_fccik")
+
+[node name="PlayAgainMessage" type="Label" parent="." unique_id=1774005945]
+visible = false
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -304.0
+offset_top = -192.0
+offset_right = 308.0
+offset_bottom = -113.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Press any key to reset"
+label_settings = SubResource("LabelSettings_bjfho")
