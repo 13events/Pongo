@@ -13,6 +13,8 @@ public partial class Main : Node
 	private Hud _hud;
 	private Paddle _leftPaddle;
 	private Paddle _rightPaddle;
+	private AudioStreamPlayer _scoreSound;
+	private AudioStreamPlayer _winSound;
 	
 	//variables track score
 	private int _leftScore = 0;
@@ -26,10 +28,13 @@ public partial class Main : Node
 	{
 		ProcessMode = ProcessModeEnum.Always;
 		
+		//cache nodes
 		_hud = GetNode<Hud>("HUD");
 		_ball =  GetNode<Ball>("Ball"); //get ref to ball
 		_leftPaddle = GetNode<Paddle>("LeftPaddle");
 		_rightPaddle = GetNode<Paddle>("RightPaddle");
+		_scoreSound = GetNode<AudioStreamPlayer>("ScoreSound");
+		_winSound = GetNode<AudioStreamPlayer>("WinSound");
 		
 		_hud.UpdateScore(_leftScore, _rightScore);
 		_ball.Reset();
@@ -40,6 +45,7 @@ public partial class Main : Node
 	public override void _Process(double delta)
 	{
 	}
+	
 	//check if ball exited left of screen, increment score for right paddle, reset ball.
 	public void OnLeftGoalBodyExited(Node2D body)
 	{
@@ -90,6 +96,7 @@ public partial class Main : Node
 		if (_leftScore == _winCondition)
 		{
 			_gameOver = true;
+			_winSound.Play();
 			_hud.ShowWinMessage("Left Player Wins!");
 			GetTree().Paused = true;
 			HideGameElements();
@@ -98,10 +105,15 @@ public partial class Main : Node
 		else if (_rightScore == _winCondition)
 		{
 			_gameOver = true;
+			_winSound.Play();
 			_hud.ShowWinMessage("Right Player Wins!");
 			GetTree().Paused = true;
 			HideGameElements();
 			_hud.ShowPlayAgainMessage();
+		}
+		else
+		{
+			_scoreSound.Play();
 		}
 	}
 	
@@ -125,14 +137,17 @@ public partial class Main : Node
 		
 		//reset gameOver to false
 		_gameOver = false;
+		
 		//reset paddle positions
 		_leftPaddle.Reset(new Vector2 (96,232));
 		_rightPaddle.Reset(new Vector2 (656, 232));
+		
 		//hide win message
 		_hud.HideWinMessage();
 		
 		//hide play again message
 		_hud.HidePlayAgainMessage();
+		
 		//show game elements
 		_leftPaddle.ShowPaddle();
 		_rightPaddle.ShowPaddle();
@@ -152,7 +167,6 @@ public partial class Main : Node
 				RestartGame();
 			}
 		}	
-		
 	}
 
 	private void HandleGoalScored(bool isLeftScore)
@@ -169,7 +183,7 @@ public partial class Main : Node
 		}
 		
 		UpdateScore();
-
+		
 		if (!_gameOver)
 		{
 			_ball.Reset();
