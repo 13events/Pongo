@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://c6mwtpd3n25u3"]
 
 [ext_resource type="Script" uid="uid://d3bqv68ynmahv" path="res://Scripts/Ball.cs" id="1_d60mj"]
+[ext_resource type="AudioStream" uid="uid://d26dewf26tld4" path="res://Sound/8-bit-rebound-1.wav" id="2_376qj"]
+[ext_resource type="AudioStream" uid="uid://m2e6ktnah7vf" path="res://Sound/8-bit-rebound-2.wav" id="3_yk4cr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_25osk"]
 radius = 11.0
@@ -15,3 +17,9 @@ shape = SubResource("CircleShape2D_25osk")
 [node name="ColorRect" type="ColorRect" parent="." unique_id=2050843843]
 offset_right = 20.0
 offset_bottom = 20.0
+
+[node name="PaddleBounceSound" type="AudioStreamPlayer" parent="." unique_id=1201230950]
+stream = ExtResource("2_376qj")
+
+[node name="WallBounceSound" type="AudioStreamPlayer" parent="." unique_id=748675041]
+stream = ExtResource("3_yk4cr")

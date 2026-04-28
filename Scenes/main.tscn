@@ -4,6 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://dpavctjal7a7j" path="res://Scenes/paddle.tscn" id="1_bo1nx"]
 [ext_resource type="PackedScene" uid="uid://c6mwtpd3n25u3" path="res://Scenes/ball.tscn" id="2_8gbba"]
 [ext_resource type="PackedScene" uid="uid://beyrxkxfidyqh" path="res://Scenes/hud.tscn" id="2_jjvhh"]
+[ext_resource type="AudioStream" uid="uid://b3imj4owianvd" path="res://Sound/8-bit-start-game.wav" id="5_21xkr"]
+[ext_resource type="AudioStream" uid="uid://bmo76jw4i8wsq" path="res://Sound/8-bit-game-over.wav" id="6_6bp64"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8gbba"]
 bounce = 1.0
@@ -20,7 +22,7 @@ script = ExtResource("1_8gbba")
 [node name="HUD" parent="." unique_id=587815471 instance=ExtResource("2_jjvhh")]
 layer = 2
 
-[node name="TopWall" type="StaticBody2D" parent="." unique_id=433092179]
+[node name="TopWall" type="StaticBody2D" parent="." unique_id=433092179 groups=["Walls"]]
 position = Vector2(400, 1)
 physics_material_override = SubResource("PhysicsMaterial_8gbba")
 metadata/_edit_group_ = true
@@ -29,7 +31,7 @@ metadata/_edit_group_ = true
 shape = SubResource("RectangleShape2D_jjvhh")
 debug_color = Color(0.99607843, 0, 0.21176471, 0.79607844)
 
-[node name="BottomWall" type="StaticBody2D" parent="." unique_id=733574347]
+[node name="BottomWall" type="StaticBody2D" parent="." unique_id=733574347 groups=["Walls"]]
 position = Vector2(400, 600)
 physics_material_override = SubResource("PhysicsMaterial_8gbba")
 metadata/_edit_group_ = true
@@ -62,6 +64,12 @@ metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="RightGoal" unique_id=1201484235]
 shape = SubResource("RectangleShape2D_8gbba")
+
+[node name="ScoreSound" type="AudioStreamPlayer" parent="." unique_id=1509453844]
+stream = ExtResource("5_21xkr")
+
+[node name="WinSound" type="AudioStreamPlayer" parent="." unique_id=1157079515]
+stream = ExtResource("6_6bp64")
 
 [connection signal="body_exited" from="LeftGoal" to="." method="OnLeftGoalBodyExited"]
 [connection signal="body_exited" from="RightGoal" to="." method="OnRightGoalBodyExited"]

@@ -5,6 +5,18 @@ public partial class Ball : CharacterBody2D
 {
     [Export]
     public float Speed { get; set; } = 300.0f;
+    
+    //cache audio sounds
+    private AudioStreamPlayer _wallBounceSound;
+    private AudioStreamPlayer _paddleBounceSound;
+
+    public override void _Ready()
+    {
+        //grab ref to the audio nodes
+        _wallBounceSound = GetNode<AudioStreamPlayer>("WallBounceSound");
+        _paddleBounceSound = GetNode<AudioStreamPlayer>("PaddleBounceSound");
+    }
+
     public void Reset()
     {
         //move ball to center of screen
@@ -23,16 +35,33 @@ public partial class Ball : CharacterBody2D
         Velocity = direction;
     }
 
-    public override void _PhysicsProcess(double delta)
+    private void PlayBounceSound(KinematicCollision2D collisionInfo)
     {
-        //MoveAndSlide();
-
-        var collisionInfo = MoveAndCollide(Velocity * (float)delta);
-        if (collisionInfo != null)
+        if (collisionInfo.GetCollider() is Paddle)
         {
-            Velocity = Velocity.Bounce(collisionInfo.GetNormal());
+            _paddleBounceSound.Play();
+        }
+        else if (collisionInfo.GetCollider() is Node node && node.IsInGroup("Walls"))
+        {
+            _wallBounceSound.Play();
         }
     }
+    public override void _PhysicsProcess(double delta)
+    {
+
+        var collisionInfo = MoveAndCollide(Velocity * (float)delta);
+        
+        //something here can be extracted, i'm sure of it
+        if (collisionInfo != null)
+        { 
+            Velocity = Velocity.Bounce(collisionInfo.GetNormal());
+            
+            PlayBounceSound(collisionInfo);
+        }
+        
+        
+    }
+
 
     
 }
