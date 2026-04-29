@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://hgpc6d00cj7q"]
+
+[ext_resource type="Script" uid="uid://bpng87otocbf3" path="res://Scripts/MainMenu.cs" id="1_853f1"]
+[ext_resource type="Texture2D" uid="uid://c71bad2dsiq7g" path="res://Art/starfieldjpg.jpg" id="2_8saeu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kjwba"]
+font_size = 159
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1087250170]
+script = ExtResource("1_853f1")
+
+[node name="Title" type="Label" parent="." unique_id=603768898]
+z_index = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -248.0
+offset_top = -230.0
+offset_right = 248.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Pongo"
+label_settings = SubResource("LabelSettings_kjwba")
+
+[node name="StartButton" type="Button" parent="." unique_id=186166738]
+z_index = 2
+anchors_preset = -1
+anchor_left = 0.505
+anchor_top = 0.708
+anchor_right = 0.505
+anchor_bottom = 0.708
+offset_left = -76.0
+offset_top = -40.799988
+offset_right = 76.0
+offset_bottom = 41.200012
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 54
+action_mode = 0
+text = "Start"
+flat = true
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1062456073]
+z_index = -1
+custom_minimum_size = Vector2(800, 600)
+offset_right = 800.0
+offset_bottom = 600.0
+mouse_filter = 2
+texture = ExtResource("2_8saeu")
+expand_mode = 1
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="StartButton" to="." method="OnStartButtonPressed"]

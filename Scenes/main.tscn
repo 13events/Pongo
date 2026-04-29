@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://beyrxkxfidyqh" path="res://Scenes/hud.tscn" id="2_jjvhh"]
 [ext_resource type="AudioStream" uid="uid://b3imj4owianvd" path="res://Sound/8-bit-start-game.wav" id="5_21xkr"]
 [ext_resource type="AudioStream" uid="uid://bmo76jw4i8wsq" path="res://Sound/8-bit-game-over.wav" id="6_6bp64"]
+[ext_resource type="Texture2D" uid="uid://c71bad2dsiq7g" path="res://Art/starfieldjpg.jpg" id="7_6bp64"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8gbba"]
 bounce = 1.0
@@ -20,7 +21,7 @@ size = Vector2(5, 600)
 script = ExtResource("1_8gbba")
 
 [node name="HUD" parent="." unique_id=587815471 instance=ExtResource("2_jjvhh")]
-layer = 2
+layer = 0
 
 [node name="TopWall" type="StaticBody2D" parent="." unique_id=433092179 groups=["Walls"]]
 position = Vector2(400, 1)
@@ -41,12 +42,15 @@ shape = SubResource("RectangleShape2D_jjvhh")
 debug_color = Color(0.99607843, 0, 0.21176471, 0.79607844)
 
 [node name="Ball" parent="." unique_id=255734720 instance=ExtResource("2_8gbba")]
+visibility_layer = 4
 position = Vector2(368, 280)
 
 [node name="LeftPaddle" parent="." unique_id=241820216 instance=ExtResource("1_bo1nx")]
+visibility_layer = 4
 position = Vector2(96, 232)
 
 [node name="RightPaddle" parent="." unique_id=29275267 instance=ExtResource("1_bo1nx")]
+visibility_layer = 4
 position = Vector2(656, 232)
 MoveUpAction = "move_up_right"
 MoveDownAction = "move_down_right"
@@ -70,6 +74,14 @@ stream = ExtResource("5_21xkr")
 
 [node name="WinSound" type="AudioStreamPlayer" parent="." unique_id=1157079515]
 stream = ExtResource("6_6bp64")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=36137066]
+z_index = -1
+offset_right = 800.0
+offset_bottom = 600.0
+mouse_filter = 2
+texture = ExtResource("7_6bp64")
+expand_mode = 1
 
 [connection signal="body_exited" from="LeftGoal" to="." method="OnLeftGoalBodyExited"]
 [connection signal="body_exited" from="RightGoal" to="." method="OnRightGoalBodyExited"]

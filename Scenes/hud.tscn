@@ -7,7 +7,7 @@ subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_e0onf"]
 font = SubResource("SystemFont_3gfia")
-font_size = 26
+font_size = 49
 
 [sub_resource type="SystemFont" id="SystemFont_e0onf"]
 subpixel_positioning = 0
@@ -17,6 +17,7 @@ font = SubResource("SystemFont_e0onf")
 font_size = 64
 
 [sub_resource type="SystemFont" id="SystemFont_fccik"]
+subpixel_positioning = 0
 
 [sub_resource type="LabelSettings" id="LabelSettings_bjfho"]
 font = SubResource("SystemFont_fccik")
@@ -26,8 +27,8 @@ font_size = 58
 script = ExtResource("1_e0onf")
 
 [node name="LeftScore" type="Label" parent="." unique_id=185408304]
-offset_left = 120.0
-offset_right = 238.0
+offset_left = 49.0
+offset_right = 312.0
 offset_bottom = 72.0
 text = "LeftScore"
 label_settings = SubResource("LabelSettings_e0onf")
@@ -36,8 +37,8 @@ vertical_alignment = 1
 uppercase = true
 
 [node name="RightScore" type="Label" parent="." unique_id=728096373]
-offset_left = 512.0
-offset_right = 672.0
+offset_left = 434.0
+offset_right = 736.0
 offset_bottom = 72.0
 text = "RightScore"
 label_settings = SubResource("LabelSettings_e0onf")
@@ -76,3 +77,15 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Press any key to reset"
 label_settings = SubResource("LabelSettings_bjfho")
+
+[node name="ReturnToMenuButton" type="Button" parent="." unique_id=521040257]
+visible = false
+offset_left = 173.0
+offset_top = 487.0
+offset_right = 617.0
+offset_bottom = 586.0
+theme_override_font_sizes/font_size = 53
+text = "Back to Menu"
+flat = true
+
+[connection signal="pressed" from="ReturnToMenuButton" to="." method="OnReturnToMenuButtonPressed"]
