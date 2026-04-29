@@ -8,6 +8,7 @@ public partial class Hud : CanvasLayer
 	private Label _rightScoreLabel;
 	private Label _winMessageLabel;
 	private Label _playAgainLabel;
+	private Button _returnToMenuButton;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -16,6 +17,7 @@ public partial class Hud : CanvasLayer
 		_rightScoreLabel = GetNode<Label>("RightScore");
 		_winMessageLabel = GetNode<Label>("WinMessage");	//starts hidden
 		_playAgainLabel = GetNode <Label>("PlayAgainMessage");
+		_returnToMenuButton = GetNode<Button>("ReturnToMenuButton");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -33,6 +35,8 @@ public partial class Hud : CanvasLayer
 	{
 		_winMessageLabel.Text = message;
 		_winMessageLabel.Visible = true;
+		
+		
 	}
 
 	public void HideWinMessage()
@@ -43,10 +47,16 @@ public partial class Hud : CanvasLayer
 	public void ShowPlayAgainMessage()
 	{
 		_playAgainLabel.Visible = true;
+		_returnToMenuButton.Visible = true;
 	}
 	
 	public void HidePlayAgainMessage()
 	{
 		_playAgainLabel.Visible = false;
+	}
+
+	private void OnReturnToMenuButtonPressed()
+	{
+		GetTree().ChangeSceneToFile("res://Scenes/MainMenu.tscn");
 	}
 }
