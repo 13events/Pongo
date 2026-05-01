@@ -52,6 +52,7 @@ position = Vector2(96, 232)
 [node name="RightPaddle" parent="." unique_id=29275267 instance=ExtResource("1_bo1nx")]
 visibility_layer = 4
 position = Vector2(656, 232)
+isAI = true
 MoveUpAction = "move_up_right"
 MoveDownAction = "move_down_right"
 
