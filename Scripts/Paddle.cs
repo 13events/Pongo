@@ -21,7 +21,7 @@ public partial class Paddle : CharacterBody2D
 
 	public override void _Ready()
 	{
-		_ball = GetNode<Ball>("../Ball"); //cache referece to ball.
+		_ball = GetNode<Ball>("../Ball"); //cache reference to ball.
 	}
 	
 	public override void _PhysicsProcess(double delta)

@@ -1,0 +1,91 @@
+[gd_scene format=3 uid="uid://cfaech8ngmv2n"]
+
+[ext_resource type="Script" uid="uid://c0ppf0njbn78d" path="res://Scenes/HowTo.cs" id="1_dk08m"]
+[ext_resource type="Texture2D" uid="uid://c71bad2dsiq7g" path="res://Art/starfieldjpg.jpg" id="2_ow35n"]
+
+[sub_resource type="SystemFont" id="SystemFont_c5uer"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1285023469]
+script = ExtResource("1_dk08m")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1100796062]
+offset_right = 800.0
+offset_bottom = 600.0
+mouse_filter = 2
+texture = ExtResource("2_ow35n")
+expand_mode = 1
+
+[node name="LeftPaddleLabel" type="Label" parent="." unique_id=1339024654]
+offset_left = 120.0
+offset_top = 256.0
+offset_right = 312.0
+offset_bottom = 304.0
+theme_override_fonts/font = SubResource("SystemFont_c5uer")
+theme_override_font_sizes/font_size = 31
+text = "Left Paddle"
+
+[node name="LeftControlsLabel" type="Label" parent="LeftPaddleLabel" unique_id=1808738430]
+layout_mode = 0
+offset_left = -24.0
+offset_top = 56.0
+offset_right = 204.0
+offset_bottom = 147.0
+theme_override_fonts/font = SubResource("SystemFont_c5uer")
+theme_override_font_sizes/font_size = 31
+text = "W - Move Up
+ S - Move Down"
+vertical_alignment = 1
+
+[node name="RightPaddleLabel" type="Label" parent="." unique_id=1872992249]
+offset_left = 496.0
+offset_top = 264.0
+offset_right = 704.0
+offset_bottom = 316.0
+theme_override_fonts/font = SubResource("SystemFont_c5uer")
+theme_override_font_sizes/font_size = 31
+text = "Right Paddle"
+
+[node name="RightControlsLabel" type="Label" parent="RightPaddleLabel" unique_id=1711545316]
+layout_mode = 0
+offset_left = -16.0
+offset_top = 56.0
+offset_right = 232.0
+offset_bottom = 194.0
+theme_override_fonts/font = SubResource("SystemFont_c5uer")
+theme_override_font_sizes/font_size = 31
+text = "Arrow Keys
+⬆️ - Move up
+⬇️ - Move Dowm"
+vertical_alignment = 1
+
+[node name="HowToPlayLabel" type="Label" parent="." unique_id=506257214]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -157.5
+offset_top = 33.0
+offset_right = 157.5
+offset_bottom = 109.0
+grow_horizontal = 2
+theme_override_fonts/font = SubResource("SystemFont_c5uer")
+theme_override_font_sizes/font_size = 55
+text = "How to Play"
+
+[node name="BackToMenuButton" type="Button" parent="." unique_id=1606650976]
+offset_left = 312.0
+offset_top = 472.0
+offset_right = 469.0
+offset_bottom = 554.0
+theme_override_font_sizes/font_size = 54
+text = "Menu"
+flat = true
+
+[node name="RulesLabel" type="Label" parent="." unique_id=923767796]
+offset_left = 184.0
+offset_top = 149.0
+offset_right = 601.0
+offset_bottom = 195.0
+theme_override_font_sizes/font_size = 31
+text = "First Play to 5 Points Wins!"
+
+[connection signal="pressed" from="BackToMenuButton" to="." method="OnBackToMenuButtonPressed"]

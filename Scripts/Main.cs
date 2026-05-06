@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Reflection.Metadata.Ecma335;
+using Pongo.Scripts;
 
 
 public partial class Main : Node
@@ -28,13 +29,19 @@ public partial class Main : Node
 	{
 		ProcessMode = ProcessModeEnum.Always;
 		
+		
 		//cache nodes
 		_hud = GetNode<Hud>("HUD");
+		_hud.PlayAgain += RestartGame;
 		_ball =  GetNode<Ball>("Ball"); //get ref to ball
 		_leftPaddle = GetNode<Paddle>("LeftPaddle");
 		_rightPaddle = GetNode<Paddle>("RightPaddle");
 		_scoreSound = GetNode<AudioStreamPlayer>("ScoreSound");
 		_winSound = GetNode<AudioStreamPlayer>("WinSound");
+		
+		_rightPaddle.isAI = !GameSettings.isMultiPlayer();
+		GD.Print("Main Scene Multiplater?" + _rightPaddle.isAI);
+
 		
 		_hud.UpdateScore(_leftScore, _rightScore);
 		_ball.Reset();
@@ -158,7 +165,7 @@ public partial class Main : Node
 
 	}
 
-	public override void _Input(InputEvent @event)
+	/*public override void _Input(InputEvent @event)
 	{
 		if (_gameOver)
 		{
@@ -167,7 +174,7 @@ public partial class Main : Node
 				RestartGame();
 			}
 		}	
-	}
+	}*/
 
 	private void HandleGoalScored(bool isLeftScore)
 	{
