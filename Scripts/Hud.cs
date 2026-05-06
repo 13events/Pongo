@@ -3,11 +3,13 @@ using System;
 
 public partial class Hud : CanvasLayer
 {
+	[Signal]
+	public delegate void PlayAgainEventHandler();
 	
 	private Label _leftScoreLabel;
 	private Label _rightScoreLabel;
 	private Label _winMessageLabel;
-	private Label _playAgainLabel;
+	private Button _playAgainButton;
 	private Button _returnToMenuButton;
 	
 	// Called when the node enters the scene tree for the first time.
@@ -16,7 +18,7 @@ public partial class Hud : CanvasLayer
 		_leftScoreLabel = GetNode<Label>("LeftScore");
 		_rightScoreLabel = GetNode<Label>("RightScore");
 		_winMessageLabel = GetNode<Label>("WinMessage");	//starts hidden
-		_playAgainLabel = GetNode <Label>("PlayAgainMessage");
+		_playAgainButton = GetNode<Button>("PlayAgainButton");
 		_returnToMenuButton = GetNode<Button>("ReturnToMenuButton");
 	}
 
@@ -46,17 +48,23 @@ public partial class Hud : CanvasLayer
 
 	public void ShowPlayAgainMessage()
 	{
-		_playAgainLabel.Visible = true;
+		_playAgainButton.Visible = true;
 		_returnToMenuButton.Visible = true;
 	}
 	
 	public void HidePlayAgainMessage()
 	{
-		_playAgainLabel.Visible = false;
+		_playAgainButton.Visible = false;
 	}
 
 	private void OnReturnToMenuButtonPressed()
 	{
 		GetTree().ChangeSceneToFile("res://Scenes/MainMenu.tscn");
+	}
+
+	private void OnPlayAgainButtonPressed()
+	{
+		_returnToMenuButton.Hide();
+		EmitSignalPlayAgain();
 	}
 }
