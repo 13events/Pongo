@@ -48,20 +48,18 @@ public partial class Ball : CharacterBody2D
     }
     public override void _PhysicsProcess(double delta)
     {
-
         var collisionInfo = MoveAndCollide(Velocity * (float)delta);
-        
-        //something here can be extracted, i'm sure of it
+
         if (collisionInfo != null)
-        { 
+        {
+            HandleBounce(collisionInfo);
+        }
+    }
+
+    private void HandleBounce(KinematicCollision2D collisionInfo)
+    {
             Velocity = Velocity.Bounce(collisionInfo.GetNormal());
             
             PlayBounceSound(collisionInfo);
-        }
-        
-        
     }
-
-
-    
 }
