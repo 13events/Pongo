@@ -14,7 +14,7 @@ public partial class HowTo : CanvasLayer
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		
+		_menuButton.Pressed += OnBackToMenuButtonPressed;
 	}
 
 	private void OnBackToMenuButtonPressed()

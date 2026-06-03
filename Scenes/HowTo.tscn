@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://cfaech8ngmv2n"]
 
-[ext_resource type="Script" uid="uid://c0ppf0njbn78d" path="res://Scenes/HowTo.cs" id="1_dk08m"]
+[ext_resource type="Script" uid="uid://rfbx7dx45fvc" path="res://Scripts/HowTo.cs" id="1_dk08m"]
 [ext_resource type="Texture2D" uid="uid://c71bad2dsiq7g" path="res://Art/starfieldjpg.jpg" id="2_ow35n"]
 
 [sub_resource type="SystemFont" id="SystemFont_c5uer"]

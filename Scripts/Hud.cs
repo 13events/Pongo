@@ -59,6 +59,7 @@ public partial class Hud : CanvasLayer
 
 	private void OnReturnToMenuButtonPressed()
 	{
+		GetTree().Paused = false;
 		GetTree().ChangeSceneToFile("res://Scenes/MainMenu.tscn");
 	}
 
