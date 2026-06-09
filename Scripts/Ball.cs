@@ -9,7 +9,11 @@ public partial class Ball : CharacterBody2D
     //cache audio sounds
     private AudioStreamPlayer _wallBounceSound;
     private AudioStreamPlayer _paddleBounceSound;
-
+    
+    static readonly  Vector2 SCREEN_CENTER = new Vector2(400, 300);
+    private const float X_DIRECTION_THRESHOLD = 0.5f;
+    private const float Y_DIRECTION_RANGE_MAX = 0.6f;
+    
     public override void _Ready()
     {
         //grab ref to the audio nodes
@@ -20,15 +24,14 @@ public partial class Ball : CharacterBody2D
     public void Reset()
     {
         //move ball to center of screen
-        Position = new Vector2(400, 300);
+        Position = SCREEN_CENTER;
         
         //xSign for x direction 
-        float xSign = (GD.Randf() >= 0.5) ? 1f : -1f;
+        float xSign = (GD.Randf() >= X_DIRECTION_THRESHOLD) ? 1f : -1f;
         
-        var direction = new Vector2(xSign, (float)GD.RandRange(-0.6, 0.6));
+        var direction = new Vector2(xSign, (float)GD.RandRange(-Y_DIRECTION_RANGE_MAX, Y_DIRECTION_RANGE_MAX));
         
-        //decide random  direction
-       // direction = new Vector2(GD.Randi() * 2 - 1, (float)GD.RandRange(-0.6, 0.6));
+        //decide random direction
         direction = direction.Normalized() * Speed;
         
         //assign the vector to the ball

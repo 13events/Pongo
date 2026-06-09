@@ -17,6 +17,9 @@ public partial class Main : Node
 	private AudioStreamPlayer _scoreSound;
 	private AudioStreamPlayer _winSound;
 	
+	private static readonly Vector2 LEFT_PADDLE_COORDS  = new Vector2(96,232);
+	private static readonly Vector2 RIGHT_PADDLE_COORDS = new Vector2(656, 232);
+	
 	//variables track score
 	private int _leftScore = 0;
 	private int _rightScore = 0;
@@ -146,8 +149,8 @@ public partial class Main : Node
 		_gameOver = false;
 		
 		//reset paddle positions
-		_leftPaddle.Reset(new Vector2 (96,232));
-		_rightPaddle.Reset(new Vector2 (656, 232));
+		_leftPaddle.Reset(LEFT_PADDLE_COORDS);
+		_rightPaddle.Reset(RIGHT_PADDLE_COORDS);
 		
 		//hide win message
 		_hud.HideWinMessage();
@@ -164,17 +167,7 @@ public partial class Main : Node
 		GetTree().Paused = false;
 
 	}
-
-	/*public override void _Input(InputEvent @event)
-	{
-		if (_gameOver)
-		{
-			if (@event is InputEventKey eventKey && eventKey.Pressed)
-			{
-				RestartGame();
-			}
-		}	
-	}*/
+	
 
 	private void HandleGoalScored(bool isLeftScore)
 	{

@@ -11,6 +11,8 @@ public partial class Paddle : CharacterBody2D
 	public bool isAI {get; set;} = false;
 
 	private Ball _ball;
+	private const int AI_DEADZONE = 15;
+	private const float AI_SPEED_MULTIPLIER = 0.7f;
 
 	//Export Move actions so we can edit them in the Editor rather than using magic strings in code. 
 	[Export] 
@@ -72,21 +74,21 @@ public partial class Paddle : CharacterBody2D
 		
 		float direction;
 		
-		// compare and see if we are within 15pxl
-		if (Mathf.Abs(distanceToBall) <= 15f)
+		// compare and see if we are within the AI Deadzone
+		if (Mathf.Abs(distanceToBall) <= AI_DEADZONE)
 		{
-			direction = 0f; 	//if ball is within 15px of paddle, stop movement
+			direction = 0f; 	//if ball is within AI Deadzone of paddle, stop movement
 		} 
 		else if (ballY > Position.Y)
 		{
-			direction = 1f;	//If we are farther than 15px and ball is below paddle, move down
+			direction = 1f;	//If we are farther than AI Deadzone and ball is below paddle, move down
 		}
 		else
 		{
-			direction = -1f;	//If we are farther than 15px and ball is above paddle, move up
+			direction = -1f;	//If we are farther than AI Deadzone and ball is above paddle, move up
 		}
 		
-		paddleVelocity.Y = direction * Speed * 0.7f;
+		paddleVelocity.Y = direction * Speed * AI_SPEED_MULTIPLIER;
 		MoveAndCollide(paddleVelocity * (float)delta);
 	}
 }
