@@ -37,13 +37,12 @@ public partial class Hud : CanvasLayer
 	{
 		_winMessageLabel.Text = message;
 		_winMessageLabel.Visible = true;
-		
-		
 	}
 
 	public void HideWinMessage()
 	{
 		_winMessageLabel.Visible = false;
+		
 	}
 
 	public void ShowPlayAgainMessage()
