@@ -21,11 +21,7 @@ public partial class Hud : CanvasLayer
 		_playAgainButton = GetNode<Button>("PlayAgainButton");
 		_returnToMenuButton = GetNode<Button>("ReturnToMenuButton");
 	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+	
 
 	public void UpdateScore(int leftScore, int rightScore)
 	{
@@ -53,7 +49,8 @@ public partial class Hud : CanvasLayer
 	
 	public void HidePlayAgainMessage()
 	{
-		_playAgainButton.Visible = false;
+		_playAgainButton.Hide();
+		_returnToMenuButton.Hide();
 	}
 
 	private void OnReturnToMenuButtonPressed()
@@ -64,7 +61,6 @@ public partial class Hud : CanvasLayer
 
 	private void OnPlayAgainButtonPressed()
 	{
-		_returnToMenuButton.Hide();
 		EmitSignalPlayAgain();
 	}
 }
