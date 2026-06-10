@@ -27,24 +27,14 @@ public partial class MainMenu : CanvasLayer
 
 	public void On1PlayerButtonPressed()
 	{
-		if (GameSettings.isMultiPlayer())
-		{
-			GameSettings.SetMultiPlayer();
-			_2PlayerButton.ButtonPressed = false;
-		}
-
-		GD.Print("isMultiPlayer?" + GameSettings.isMultiPlayer());
+		GameSettings.SetMultiPlayer(false);
+		_2PlayerButton.ButtonPressed = false;
 	}
 
 	public void On2PlayerButtonPressed()
 	{
-		if (!GameSettings.isMultiPlayer())
-		{
-			GameSettings.SetMultiPlayer();
-			_1PlayerButton.ButtonPressed = false;
-		}
-
-		GD.Print("isMultiPlayer?" + GameSettings.isMultiPlayer());
+		GameSettings.SetMultiPlayer(true);
+		_1PlayerButton.ButtonPressed = false;
 	}
 
 	public void OnHowToButtonPressed()
