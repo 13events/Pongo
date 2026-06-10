@@ -50,11 +50,6 @@ public partial class Main : Node
 		_ball.Reset();
 		
 	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
 	
 	//check if ball exited left of screen, increment score for right paddle, reset ball.
 	public void OnLeftGoalBodyExited(Node2D body)
